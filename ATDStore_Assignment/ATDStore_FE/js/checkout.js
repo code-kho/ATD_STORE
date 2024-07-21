@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data: idList,
     contentType: 'application/json'
   }).done(function (msg) {
+    console.log(msg.data)
 
     var html = ``
 

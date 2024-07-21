@@ -15,6 +15,7 @@ $(document).ready(function () {
             "token": token
         }
     }).done(function (msg) {
+        console.log(msg)
         id = msg.data.id
         document.getElementById("name").value = msg.data.fullname;
         document.getElementById("phoneNumber").value = msg.data.phoneNumber;

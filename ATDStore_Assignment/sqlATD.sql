@@ -3,7 +3,7 @@ Create DATABASE ATDFinal
 GO
 USE ATDFinal
 GO
-SELECT * from category
+
 
 GO
 create table roles(
@@ -40,7 +40,6 @@ Create table colors(
     id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(20)
 )
-colors,capacitys,products,ratingproduct,orders,orderitem
 Create table capacitys(
     id INT IDENTITY(1,1) PRIMARY KEY,
     archive int
@@ -59,6 +58,7 @@ Create table products(
     sale_percent int,
     create_date DATETIME
 )
+
 
 
 CREATE TABLE ratingproduct(
@@ -88,13 +88,16 @@ Create table orderitem(
     totalprice DECIMAL,
     PRIMARY KEY(order_id,product_id)
 )
+select * From products  id IN (1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017)
 
+delete products where id IN (1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017)
 ALTER TABLE users ADD CONSTRAINT fk_users_role_id FOREIGN KEY(role_id) REFERENCES roles(id)
 ALTER TABLE products ADD CONSTRAINT fk_products_color_id FOREIGN KEY(color_id) REFERENCES colors(id)
 ALTER TABLE products ADD CONSTRAINT fk_products_capacity_id FOREIGN KEY(capacity_id) REFERENCES capacitys(id)
 ALTER TABLE products ADD CONSTRAINT fk_products_category_id FOREIGN KEY(category_id) REFERENCES category(id)
 ALTER TABLE ratingproduct ADD CONSTRAINT fk_ratingproduct_user_id FOREIGN KEY(user_id) REFERENCES users(id)
 ALTER TABLE ratingproduct ADD CONSTRAINT fk_ratingproduct_product_id FOREIGN KEY(product_id) REFERENCES products(id)
+ALTER TABLE promo ADD CONSTRAINT fk_promo_product_id FOREIGN KEY(product_id) REFERENCES products(id)
 ALTER TABLE orders ADD CONSTRAINT fk_promo_user_id FOREIGN KEY(user_id) REFERENCES users(id)
 ALTER TABLE orderitem ADD CONSTRAINT fk_orderitem_order_id FOREIGN KEY(order_id) REFERENCES orders(id)
 ALTER TABLE orderitem ADD CONSTRAINT fk_orderitem_product_id FOREIGN KEY(product_id) REFERENCES products(id)
@@ -338,18 +341,3 @@ VALUES
     (31, 26, 'Decent product. It gets the job done.', 3),
     (32, 27, 'I wish I had bought this product sooner!', 5);
 
-
-INSERT INTO products (name, quantity_instock, category_id, color_id, capacity_id, price, [desc], image, sale_percent, create_date) VALUES 
-('OtterBox Lumen Series Case for iPhone 15', 50, 9, null, null, 60.57, 'Welcome the Year of the Dragon with the Otterbox Lumen Series case for MagSafe specially made for the Lunar New Year. With illustration design from artist Yulong Lli, this auspicious version of the Apple iPhone case will bring the brave characteristics of this zodiac animal to life through peony-shaped fireworks, swirls and many colors. brilliant.', 'OtterBoxLumenSeriesCase.jpg', 20, '2024-03-19 09:15:00'),
-('Smart Folio for iPad Pro (4th generation)', 50, 9, 13, null, 88.85, 'Smart Folio for iPad Pro is thin and light, protecting both the front and back of the device. Smart Folio automatically wakes iPad when opened and puts it back to sleep when closed. The Smart Folio attaches magnetically and can be easily folded in a variety of ways to create a stand for reading, viewing, typing, or FaceTime calls.', 'SmartFolio.jpg', 15, '2024-03-19 09:30:00'),
-('iPhone Lightning Dock', 30, 9, 8, null, 39.99, 'You can use it to charge and sync any iPhone that has a Lightning connector. Your iPhone sits upright in the dock as it syncs or charges, so it’s ideal for a desk or worktop. Even when your iPhone is in an Apple-designed case, it’s easy to dock. And you can unlock iPhone or use Touch ID without having to remove it from the dock.', 'LightningDock.jpeg', 10, '2024-03-19 09:45:00'),
-('20W USB-C Power Adapter', 50, 9, null, null, 29.99, 'The Apple 20W USB‑C Power Adapter offers fast, efficient charging at home, in the office or on the go. Pair it with iPhone 8 or later for fast charging — 50 percent battery in around 30 minutes.¹ Or pair it with the iPad Pro and iPad Air for optimal charging performance. Compatible with any USB-C enabled device.', 'PowerAdapter.jpg', 0, '2024-03-19 10:00:00'),
-('Belkin Lightning Audio + Charge Rockstar', 100, 9, null, null, 59.50, 'The Belkin Lightning Audio + Charge RockStar offers dual functionality for charging and listening to your iPhone or iPad. Whether you want to charge in the car, on the go or at home, the adapter makes it possible to listen to Lightning Audio and power your iPhone, simultaneously.', 'ChargeRockstar.jpg', 0, '2024-03-19 10:15:00'),
-('Lightning Digital AV Adapter', 50, 9, null, null, 76.40, 'Use the Lightning Digital AV Adapter with your iPhone, iPad or iPod with Lightning connector. The Lightning Digital AV Adapter supports mirroring of what is displayed on your device screen — including apps, presentations, websites, slideshows and more — to your HDMI-equipped TV, display, projector or other compatible display in up to 1080p HD.', 'LightningAdapter.jpg', 10, '2024-03-19 10:30:00'),
-('Apple Pencil (USB-C)', 30, 9, null, null, 120.10, 'Apple Pencil (USB-C) is perfect for taking notes, sketching, marking up documents, journalling and more. It delivers pixel‑perfect precision, low latency and tilt sensitivity. So it’s as natural to use as a pencil.', 'ApplePencil.jpg', 0, '2024-03-19 10:45:00'),
-('iPhone 15 Plus FineWoven Case with MagSafe', 50, 9, 13, null, 89.80, 'Designed by Apple to complement iPhone 15 Plus, the FineWoven Case with MagSafe is a delightful way to give your iPhone extra protection while adding style.', 'FineWovenCase.jpg', 15, '2024-03-19 11:00:00'),
-('mophie Wireless Charging Vent Mount with MagSafe', 40, 9, null, null, 120.10, 'The mophie wireless charging vent mount holds your iPhone securely where you can see it while it charges. This Made for MagSafe wireless charger comes with an adjustable arm extension that lets you position your iPhone at the perfect viewing angle, and a USB-C 20W charger that delivers up to 15W at the fastest wireless charging speed.', 'WirelessCharging.jpg', 20, '2024-03-19 11:15:00'),
-('mophie Dual USB-C 40W PD Car Charger', 100, 9, null, null, 55.50, 'The mophie Dual USB-C 40W PD Car Charger can charge two devices while you drive. The USB-C and USB-C PD ports deliver a shared output of up to 40W to your iPhone or iPad.* This compact charger turns your car’s 12V auxiliary port into a convenient power source for your portable devices.', 'CarCharger.jpg', 0, '2024-03-19 11:30:00'),
-
-('Apple TV+', 50, 10, null, null, 50.00, 'New Apple Originals every month — always ad‑free. Stream on the Apple TV app on Apple devices, smart TVs, consoles or sticks. Watch in 4K HDR video with immersive Spatial Audio. Share a single subscription with up to five people.', 'AppleTV.png', 0, '2024-03-19 11:45:00'),
-('Apple Music', 30, 10, null, null, 99.00, 'Select your favourite songs, albums, playlists and artists to add them to your library — and improve your personalised recommendations.3 And you’ll automatically be notified when artists you’ve added release new music.', 'AppleMusic.jpg', 10, '2024-03-19 12:00:00')
